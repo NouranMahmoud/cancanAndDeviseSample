@@ -1,0 +1,44 @@
+<h1>Hello In Show Page </h1>
+
+<p>
+  <b>Listing Type:</b>
+  <%= @item.listingtype %>
+</p>
+<p>
+  <b>Price</b>
+  <%= @item.price %>
+</p>
+<p>
+  <b>Purpose</b>
+  <%= @item.purpose %>
+</p>
+<p>
+  <b>Area</b>
+  <%= @item.area %>
+</p>
+<p>
+  <b>country</b>
+  <%= @address.country %>
+</p>
+
+<p>
+  <b>city</b>
+  <%= @address.city %>
+</p>
+<p>
+  <b>community</b>
+  <%= @address.community %>
+</p>
+<p>
+  <b>subcommunity</b>
+  <%= @address.subcommunity %>
+</p>
+<p>
+  <b>subtype</b>
+  <%= @address.subtype %>
+</p>
+<p>
+  <b>Description</b>
+  <%= @item.description %>
+</p>
+<p><%= link_to "back to dashboard" , dashboard_index_path %> | <%= link_to "back to items" , item_index_path %></p> 
