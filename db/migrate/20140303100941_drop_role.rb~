@@ -1,0 +1,4 @@
+class DropRole < ActiveRecord::Migration
+  def change
+  end
+end

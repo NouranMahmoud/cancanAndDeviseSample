@@ -1,24 +1,35 @@
 class Ability
   include CanCan::Ability
-
   def initialize(user)
-    # Define abilities for the passed in user here. For example:
-    
-       user ||= User.new # guest user (not logged in)
-        # if user.role == "admin" 
-        #    can :manage, :all
-        # end        
-        #  if user.role != "admin" 
-        #     can :read, :all
-        # end
+    user.role.permissions.each do |permission|
+      if permission.subject_class == "all"
+        can permission.action.to_sym, permission.subject_class.to_sym
+      else
+        can permission.action.to_sym, permission.subject_class.constantize
+      end
+    #can :show,Item
+    end         
+  end
+end
 
-        can :manage, :all if user.role == "admin"
-        can :read, :all if (user.role != "admin" || user.role==nil)
-        if user.role == "broker" 
-            can :read, :all
-            can :create, :all
-            #can :only_hide,:all 
-        end
+  # def initialize(user)
+  #   # Define abilities for the passed in user here. For example:
+    
+  #      user ||= User.new # guest user (not logged in)
+  #       # if user.role == "admin" 
+  #       #    can :manage, :all
+  #       # end        
+  #       #  if user.role != "admin" 
+  #       #     can :read, :all
+  #       # end
+
+  #       can :manage, :all if user.role == "admin"
+  #       can :read, :all if (user.role != "admin" || user.role==nil)
+  #       if user.role == "broker" 
+  #           can :read, :all
+  #           can :create, :all
+  #           #can :only_hide,:all 
+  #       end
     # The first argument to `can` is the action you are giving the user 
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
@@ -36,5 +47,5 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-  end
-end
+  
+

@@ -1,0 +1,8 @@
+<h1> Listing Roles </h1>
+
+ <% @roles.each do |role| %>
+<p><%= role.name %> |
+ <%= link_to 'show', role %> |
+ <%= link_to 'edit', edit_role_path(role) %> </p>
+
+<% end %>

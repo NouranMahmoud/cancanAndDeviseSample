@@ -13,7 +13,7 @@
     <% if (current_user.role == nil ) %>
     visitor
     <% else %>
-    <%= current_user.role %>
+    <%= current_user.role.name %>
     <% end %> </strong> </p>
 <br>
   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |

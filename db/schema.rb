@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226123824) do
+ActiveRecord::Schema.define(version: 20140303105812) do
 
   create_table "addresses", force: true do |t|
     t.string   "country"
@@ -36,10 +36,24 @@ ActiveRecord::Schema.define(version: 20140226123824) do
     t.integer  "user_id"
   end
 
-  create_table "roles", force: true do |t|
+  create_table "permissions", force: true do |t|
+    t.string   "subject_class"
+    t.string   "action"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.text     "description"
+  end
+
+  create_table "permissions_roles", force: true do |t|
+    t.integer "permission_id"
+    t.integer "role_id"
+  end
+
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "roles_users", id: false, force: true do |t|
@@ -60,10 +74,11 @@ ActiveRecord::Schema.define(version: 20140226123824) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "role"
+    t.integer  "role_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end

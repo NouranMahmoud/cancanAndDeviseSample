@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+ belongs_to :role
+ def super_admin?
+  self.role.name == "Super Admin"
+ end
   # ROLES = %w[admin moderator author banned]
   # def role?(base_role)
   # 	ROLES.index(base_role.to_s) <= ROLES.index(role)

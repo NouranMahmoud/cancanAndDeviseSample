@@ -1,2 +1,3 @@
 <h2> welcome to ur account </h2>
-<p><%= link_to "Add new Item" , item_index_path %></p>
+<p><%= link_to "Items listings" , item_index_path %></p>
+<p><%= link_to "Add new Item" , roles_path if can? :index, Role %></p>

@@ -4,6 +4,7 @@ MyAuthonticationSample::Application.routes.draw do
   resources :dashboard
   root :to => "home#index"
    post '/hide_item/:id',  to: 'item#only_hide' #edited after inserting the code of Ajax
+   resources :roles
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
